@@ -3,12 +3,7 @@ package eu.budick;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Main {
 
@@ -20,18 +15,19 @@ public class Main {
         ArrayList<String> testCases = Main.getListFromFile(resourcesDirectory + "/Listen/test.txt");
 
         NearestNeighbor nn = new NearestNeighbor();
+
+        /**
+         * Do not normalize
+         */
         nn.train(trainingCases);
-        nn.test(testCases);
+        nn.test(testCases, false);
         nn.displayResults();
 
-        /*String fileName = dirName + "/0-AB.cep";
-        System.out.println("Reading: " + fileName);
-        float[] vector = Main.getVector(fileName);
-        for (float v : vector) {
-            System.out.println(v);
-        }
-        */
-
+        /**
+         * Normalize
+         */
+        nn.test(testCases, true);
+        nn.displayResults();
     }
 
     public static ArrayList<String> getListFromFile(String fileName) {
