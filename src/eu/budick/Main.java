@@ -13,6 +13,7 @@ public class Main {
 
         ArrayList<String> trainingCases = Main.getListFromFile(resourcesDirectory + "/Listen/training.txt");
         ArrayList<String> testCases = Main.getListFromFile(resourcesDirectory + "/Listen/test.txt");
+        ArrayList<String> phonemeList = Main.getListFromFile(resourcesDirectory + "/Listen/phonemes.txt");
 
         NearestNeighbor nn = new NearestNeighbor();
 
@@ -28,6 +29,16 @@ public class Main {
          */
         nn.test(testCases, true);
         nn.displayResults();
+
+
+        /**
+         * Gaussian Classifier
+         */
+        GaussianClassifier gc = new GaussianClassifier();
+        gc.train(trainingCases, phonemeList);
+        gc.test(testCases);
+        gc.displayResults();
+
     }
 
     public static ArrayList<String> getListFromFile(String fileName) {
