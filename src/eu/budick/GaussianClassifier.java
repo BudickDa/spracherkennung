@@ -71,13 +71,12 @@ public class GaussianClassifier {
 
         for (int i = 0; i < this.phonemeList.size(); i++) {
             double distance = this.getGaussianDistance(vector, i);
-            System.out.println(distance);
             if (distance < bestDistance) {
                 bestIndex = i;
                 bestDistance = distance;
             }
         }
-        return this.trainingsDataIndex.get(bestIndex);
+        return this.phonemeList.get(bestIndex);
     }
 
     public static float[] getMeanVector(ArrayList<float[]> vectors) {
